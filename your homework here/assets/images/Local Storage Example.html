@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- saved from url=(0130)file:///C:/Users/Offset%20PC/OneDrive/SMU%20Coding/Activities/07/Activities/03-localstorage-demo/3-instructor-do-localstorage.html -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Local Storage Example</title>
+  <style>
+    #input-name,
+    #greeting {
+      font-weight: 700;
+      font-size: 2em;
+    }
+  </style></head>
+
+  
+  <body>
+    <!-- Title -->
+    <h1>Guest Book</h1>
+    <!-- Input Form -->
+
+    <form>
+      <span id="input-name">
+        Your Name: <input id="your-name" type="text">
+        <input id="save-name" value="Save" type="submit">
+      </span>
+    </form>
+
+    <!-- Print Name -->
+    <span id="greeting"><p>red</p>red</span>
+
+    <!-- jQuery -->
+    <script src="./Local Storage Example_files/jquery.min.js.download"></script>
+
+    <!-- Script -->
+    <script>
+      // When users click "save-name"
+      $("#save-name").on("click", function(event) {
+        // This line prevents the page from refreshing when a user hits "enter".
+        event.preventDefault();
+
+        // Clear the HTML from the greeting header
+        $("#greeting").html("");
+
+        // Grab the user input
+        var username = $("#your-name")
+          .val()
+          .trim();
+
+        // Clear absolutely everything stored in localStorage using localStorage.clear()
+        localStorage.clear();
+
+        // Store the username into localStorage using "localStorage.setItem"
+        localStorage.setItem("name", username);
+
+        // And display that name for the user using "localStorage.getItem"
+        $("#greeting").text(localStorage.getItem("name"));
+
+        $("#greeting").prepend("<p>" + username + "</p>");
+      });
+
+      // By default (upon load) show the name stored in localStorage using "localStorage.getItem"
+      $("#greeting").text(localStorage.getItem("name"));
+    </script>
+  
+
+</body></html>
